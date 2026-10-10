@@ -1,0 +1,22 @@
+[Unit]
+Description=LCD HAT physical joystick and buttons
+After=systemd-udev-settle.service
+
+[Service]
+Type=simple
+ExecStartPre=/usr/sbin/modprobe uinput
+ExecStart=/usr/bin/python3 /opt/lcd-hat-buttons/buttons.py --mode mouse
+Restart=on-failure
+RestartSec=3
+RuntimeDirectory=lcd-hat-buttons
+RuntimeDirectoryMode=0755
+UMask=0022
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+RestrictAddressFamilies=AF_UNIX
+MemoryMax=40M
+
+[Install]
+WantedBy=multi-user.target

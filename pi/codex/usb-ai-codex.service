@@ -1,0 +1,29 @@
+[Unit]
+Description=Official Codex runtime for USB AI Bridge
+After=network.target usb-ai-mihomo.service
+[Service]
+User=usb-ai-codex
+Group=usb-ai-codex
+WorkingDirectory=/var/lib/usb-ai-codex/workspace
+Environment=HOME=/var/lib/usb-ai-codex
+Environment=CODEX_HOME=/var/lib/usb-ai-codex/config
+EnvironmentFile=/etc/usb-ai-codex/proxy.env
+ExecStart=/usr/bin/python3 /opt/usb-ai-codex/codex_gateway.py
+Restart=on-failure
+RestartSec=3
+RuntimeDirectory=usb-ai-codex
+RuntimeDirectoryMode=0700
+StateDirectory=usb-ai-codex
+StateDirectoryMode=0700
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/usb-ai-codex
+InaccessiblePaths=/etc/usb-ai-bridge /var/lib/usb-ai-bridge
+MemoryMax=180M
+MemorySwapMax=180M
+TasksMax=128
+[Install]
+WantedBy=multi-user.target

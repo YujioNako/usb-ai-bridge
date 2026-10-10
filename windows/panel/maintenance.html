@@ -1,0 +1,8 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pi USB 维护终端</title><link rel="stylesheet" href="/xterm.css"><link rel="stylesheet" href="/maintenance.css"></head><body>
+<main><header><div><small>USB AI · 设备维护</small><h1>Pi SSH 终端</h1></div><nav><a href="/">对话工作台</a><a href="/device">设备与 Wi-Fi</a></nav></header>
+<p class="intro">通过 USB 串口登录 Pi 本机 SSH，无需 Wi-Fi 或 USB 网卡。输入 Pi 的系统密码时，终端不显示字符。</p>
+<form id="login"><label>面板管理密钥<input id="key" type="password" autocomplete="off" placeholder="已登录面板时自动使用"></label><label>Pi 系统用户名<input id="user" value="piuser" autocomplete="username" maxlength="32" required></label><button id="open">连接 SSH</button></form>
+<div class="bar"><span id="status" role="status" aria-live="polite">尚未连接</span><div><button id="interrupt" disabled>Ctrl+C</button><button id="escape" disabled>Esc</button><button id="close" disabled>断开</button></div></div>
+<div id="terminal" aria-label="Pi SSH 交互终端"></div>
+<footer>支持方向键、Tab、中文及复制粘贴。15 分钟无输入、断线超过 90 秒或会话超过 2 小时后关闭。关闭页面会尝试立即断开；重新登录前请检查上次命令的执行结果。终端操作直接作用于 Pi。</footer>
+</main><script src="/xterm.js"></script><script src="/xterm-fit.js"></script><script type="module" src="/maintenance.js"></script></body></html>
